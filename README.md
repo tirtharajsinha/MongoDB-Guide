@@ -226,11 +226,17 @@ db.content.update({name: 'ghontu'},
 Know more about [this here.](https://www.mongodb.com/docs/manual/reference/operator/query/)
 
 ```
-db.content.update({joined: {$lt: 5}},{fresher:true});
-db.content.find({joined: {$lte: 5}},{fresher:true})
-db.content.find({joined: {$eq: 5}},{fresher:true})
-db.content.find({joined: {$gt: 5}},{fresher:false})
-db.content.find({joined: {$gte: 5}},{fresher:false})
+db.content.updateMany({joined: {$lt: 5}},{$set:{fresher:true}});
+db.content.updateMany({joined: {$lte: 5}},{$set:{fresher:true}})
+db.content.updateMany({joined: {$eq: 5}},{$set:{fresher:true}})
+db.content.updateMany({joined: {$gt: 5}},{$set:{fresher:true}})
+db.content.updateMany({joined: {$gte: 5}},{$set:{fresher:true}})
+```
+
+### Remove a column/field
+
+```
+ db.content.updateMany({}, { $unset: { lessThan: "" } });
 ```
 
 ### Delete Row
@@ -238,4 +244,5 @@ db.content.find({joined: {$gte: 5}},{fresher:false})
 ```
 db.content.remove({name: 'tirtha'})
 ```
+
 # MongoDB-Guide
